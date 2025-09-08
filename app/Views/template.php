@@ -31,11 +31,19 @@
                         <a class="nav-link <?= service('uri')->getPath() == 'contact' ? 'active' : '' ?>"
                             href="<?= site_url('contact') ?>">Contact</a>
                     </li>
+                    <!-- Added Login & Register links -->
+                    <li class="nav-item">
+                        <a class="nav-link <?= service('uri')->getPath() == 'auth/login' ? 'active' : '' ?>"
+                            href="<?= site_url('auth/login') ?>">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= service('uri')->getPath() == 'auth/register' ? 'active' : '' ?>"
+                            href="<?= site_url('auth/register') ?>">Register</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
 
     <div class="container mt-4">
         <?= $this->renderSection('content') ?>

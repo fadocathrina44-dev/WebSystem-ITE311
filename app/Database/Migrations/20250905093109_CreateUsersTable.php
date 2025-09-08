@@ -11,25 +11,27 @@ class CreateUsersTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
+                'constraint' => 5,
                 'unsigned' => true,
-                'auto_increment' => true,
+                'auto_increment' => true
             ],
             'name' => [
                 'type' => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => '100',
             ],
             'email' => [
                 'type' => 'VARCHAR',
-                'constraint' => 100,
-                'unique' => true,
+                'constraint' => '100',
+                'unique' => true
             ],
             'password' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => '255',
             ],
             'role' => [
-                'type' => 'ENUM("student","instructor","admin")',
-                'default' => 'student',
+                'type' => 'ENUM',
+                'constraint' => ['admin', 'user'],
+                'default' => 'user',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -40,12 +42,12 @@ class CreateUsersTable extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id', true);
-        $this->forge->createTable('users');
+        $this->forge->addPrimaryKey('id');
+        $this->forge->createTable('user1');
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('user1');
     }
 }
