@@ -11,14 +11,7 @@
 <body class="bg-light">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">My Dashboard</a>
-            <div class="d-flex">
-                <a href="<?= site_url('/auth/logout') ?>" class="btn btn-outline-light">Logout</a>
-            </div>
-        </div>
-    </nav>
+    <?= $this->include('templates/header') ?>
 
     <!-- Main Content -->
     <div class="container mt-5">
@@ -33,12 +26,27 @@
                             <small class="badge bg-success">Role: <?= esc($role) ?></small>
                         </p>
 
-                        <!-- Example of dashboard options -->
-                        <div class="d-grid gap-3 mt-4">
-                            <a href="#" class="btn btn-primary btn-lg">View Profile</a>
-                            <a href="#" class="btn btn-outline-primary btn-lg">Settings</a>
-                            <a href="#" class="btn btn-outline-secondary btn-lg">Activity Logs</a>
-                        </div>
+                        <!-- Role-based actions -->
+                        <?php if ($role === 'admin'): ?>
+                            <div class="d-grid gap-3 mt-4">
+                                <a href="#" class="btn btn-primary btn-lg">Manage Users</a>
+                                <a href="#" class="btn btn-outline-primary btn-lg">System Settings</a>
+                                <a href="#" class="btn btn-outline-secondary btn-lg">Reports</a>
+                            </div>
+                        <?php elseif ($role === 'instructor'): ?>
+                            <div class="d-grid gap-3 mt-4">
+                                <a href="#" class="btn btn-primary btn-lg">My Courses</a>
+                                <a href="#" class="btn btn-outline-primary btn-lg">Grade Submissions</a>
+                                <a href="#" class="btn btn-outline-secondary btn-lg">Course Reports</a>
+                            </div>
+                        <?php elseif ($role === 'student'): ?>
+                            <div class="d-grid gap-3 mt-4">
+                                <a href="#" class="btn btn-primary btn-lg">My Subject</a>
+                                <a href="#" class="btn btn-outline-primary btn-lg">Browse Courses</a>
+                                <a href="#" class="btn btn-outline-primary btn-lg">My Enrollments</a>
+                                <a href="#" class="btn btn-outline-secondary btn-lg">My Grades</a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

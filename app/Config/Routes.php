@@ -23,6 +23,7 @@ $routes->post('auth/register', 'Auth::register');
 $routes->get('auth/login', 'Auth::login');
 $routes->post('auth/login', 'Auth::login');
 
+$routes->get('/logout', 'Auth::logout');
 $routes->get('auth/logout', 'Auth::logout');
-$routes->get('dashboard', 'Auth::dashboard');
+$routes->get('/dashboard', 'Auth::dashboard');
 $routes->get('auth/dashboard', 'Auth::dashboard');
