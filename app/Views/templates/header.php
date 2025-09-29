@@ -29,6 +29,10 @@
                     <?php if ($role === 'student'): ?>
                         <li class="nav-item"><a class="nav-link" href="#">My Subject</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Enrollments</a></li>
+                    <?php elseif ($role === 'teacher'): ?>
+                        <li class="nav-item"><a class="nav-link" href="#">My Courses</a></li>
+                    <?php elseif ($role === 'admin'): ?>
+                        <li class="nav-item"><a class="nav-link" href="#">Admin Panel</a></li>
                     <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('logout') ?>">Logout</a>
@@ -47,5 +51,3 @@
         </div>
     </div>
 </nav>
-
-

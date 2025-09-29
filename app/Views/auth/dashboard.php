@@ -33,7 +33,7 @@
                                 <a href="#" class="btn btn-outline-primary btn-lg">System Settings</a>
                                 <a href="#" class="btn btn-outline-secondary btn-lg">Reports</a>
                             </div>
-                        <?php elseif ($role === 'instructor'): ?>
+                        <?php elseif ($role === 'teacher'): ?>
                             <div class="d-grid gap-3 mt-4">
                                 <a href="#" class="btn btn-primary btn-lg">My Courses</a>
                                 <a href="#" class="btn btn-outline-primary btn-lg">Grade Submissions</a>
