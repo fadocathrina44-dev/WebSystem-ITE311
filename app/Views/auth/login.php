@@ -31,7 +31,7 @@
                 <?php endif; ?>
 
                 <!-- Login form -->
-                <form action="<?= site_url('auth/login') ?>" method="post">
+                <form action="<?= site_url('login') ?>" method="post">
                     <?= csrf_field() ?>
 
                     <div class="mb-3">
@@ -51,7 +51,7 @@
 
                     <div class="d-grid gap-2 mt-4">
                         <button type="submit" class="btn btn-primary btn-lg">Login</button>
-                        <a href="<?= site_url('auth/register') ?>" class="btn btn-outline-secondary btn-lg">Register</a>
+                        <a href="<?= site_url('register') ?>" class="btn btn-outline-secondary btn-lg">Register</a>
                     </div>
                 </form>
 

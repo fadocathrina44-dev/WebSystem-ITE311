@@ -57,7 +57,7 @@ class Auth extends Controller
             }
 
             $session->setFlashdata('success', 'Registration successful! Please log in.');
-            return redirect()->to(site_url('auth/login'));
+            return redirect()->to(site_url('login'));
         }
 
         return view('auth/register');
@@ -92,7 +92,7 @@ class Auth extends Controller
                 ]);
 
                 $session->setFlashdata('success', 'Welcome, ' . $user['name']);
-                return redirect()->to(site_url('auth/dashboard'));
+                return redirect()->to(site_url('dashboard'));
             } else {
                 $session->setFlashdata('error', 'Invalid email or password.');
             }
@@ -105,7 +105,7 @@ class Auth extends Controller
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(site_url('auth/login'));
+        return redirect()->to(site_url('login'));
     }
 
     // Dashboard
@@ -113,7 +113,7 @@ class Auth extends Controller
     {
         $session = session();
         if (!$session->get('isLoggedIn')) {
-            return redirect()->to(site_url('auth/login'));
+            return redirect()->to(site_url('login'));
         }
 
         return view('auth/dashboard', [

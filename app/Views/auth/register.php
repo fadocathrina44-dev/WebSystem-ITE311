@@ -27,7 +27,7 @@
                 <?php endif; ?>
 
                 <!-- Register form -->
-                <form method="post" action="<?= site_url('auth/register') ?>">
+                <form method="post" action="<?= site_url('register') ?>">
                     <?= csrf_field() ?>
 
                     <div class="mb-3">
@@ -56,14 +56,14 @@
 
                     <div class="d-grid gap-2 mt-4">
                         <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                        <a href="<?= site_url('auth/login') ?>" class="btn btn-outline-secondary btn-lg">Back to Login</a>
+                        <a href="<?= site_url('login') ?>" class="btn btn-outline-secondary btn-lg">Back to Login</a>
                     </div>
                 </form>
 
                 <!-- Already registered -->
                 <div class="text-center mt-3">
                     <p class="mb-0">Already have an account? 
-                        <a href="<?= site_url('auth/login') ?>" class="text-decoration-none fw-semibold">Login here</a>
+                        <a href="<?= site_url('login') ?>" class="text-decoration-none fw-semibold">Login here</a>
                     </p>
                 </div>
             </div>
