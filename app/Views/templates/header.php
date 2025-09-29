@@ -23,7 +23,7 @@
                 <?php if (session()->get('isLoggedIn')): ?>
                     <?php $role = session()->get('role'); ?>
                     <li class="nav-item">
-                        <a class="nav-link <?= service('uri')->getPath() == 'dashboard' ? 'active' : '' ?>"
+                        <a class="nav-link text-primary <?= service('uri')->getPath() == 'dashboard' ? 'active' : '' ?>"
                             href="<?= site_url('dashboard') ?>">Dashboard</a>
                     </li>
                     <?php if ($role === 'student'): ?>
@@ -35,15 +35,15 @@
                         <li class="nav-item"><a class="nav-link" href="#">Admin Panel</a></li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('logout') ?>">Logout</a>
+                        <a class="btn btn-danger ms-2" href="<?= site_url('logout') ?>">Logout</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link <?= service('uri')->getPath() == 'login' ? 'active' : '' ?>"
+                        <a class="btn btn-primary ms-2 <?= service('uri')->getPath() == 'login' ? 'active' : '' ?>"
                             href="<?= site_url('login') ?>">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= service('uri')->getPath() == 'register' ? 'active' : '' ?>"
+                        <a class="btn btn-success ms-2 <?= service('uri')->getPath() == 'register' ? 'active' : '' ?>"
                             href="<?= site_url('register') ?>">Register</a>
                     </li>
                 <?php endif; ?>
