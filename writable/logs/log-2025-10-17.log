@@ -1,0 +1,73 @@
+CRITICAL - 2025-10-17 12:10:56 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:20 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:22 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:23 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:23 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:23 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:19:25 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 12:34:09 --> Error: Class "App\Models\AnnouncementModel" not found
+[Method: GET, Route: announcements]
+in APPPATH\Controllers\Announcement.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Announcement->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-17 12:36:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

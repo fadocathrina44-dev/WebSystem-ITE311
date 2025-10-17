@@ -27,3 +27,4 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('auth/logout', 'Auth::logout');
 $routes->get('/dashboard', 'Auth::dashboard');
 $routes->get('auth/dashboard', 'Auth::dashboard');
+$routes->get('announcements', 'Announcement::index');

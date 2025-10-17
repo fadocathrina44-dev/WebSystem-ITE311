@@ -2,6 +2,7 @@
 
 use CodeIgniter\Boot;
 use Config\Paths;
+$_SERVER['CI_ENVIRONMENT'] = 'development';
 
 /*
  *---------------------------------------------------------------
@@ -9,7 +10,7 @@ use Config\Paths;
  *---------------------------------------------------------------
  */
 
-$minPhpVersion = '8.1'; // If you update this, don't forget to update `spark`.
+$minPhpVersion = '8.1'; // If you update this, don't forget to update spark.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
         'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
@@ -48,8 +49,7 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 
 // LOAD OUR PATHS CONFIG FILE
 // This is the line that might need to be changed, depending on your folder structure.
-$pathsPath = realpath(FCPATH . 'app/Config/Paths.php');
-require $pathsPath;
+require FCPATH . 'app/Config/Paths.php';
 // ^^^ Change this line if you move your application folder
 
 $paths = new Paths();
