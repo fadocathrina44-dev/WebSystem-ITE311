@@ -27,4 +27,14 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('auth/logout', 'Auth::logout');
 $routes->get('/dashboard', 'Auth::dashboard');
 $routes->get('auth/dashboard', 'Auth::dashboard');
-$routes->get('announcements', 'Announcement::index');
+$routes->get('announcements', 'Announcement::index'); 
+$routes->get('dashboard', 'Admin::dashboard');  // Example route
+$routes->get('dashboard', 'Teacher::Dashboard');   // Example route
+$routes->get('announcements', 'Announcement::index');  // Anyone can access this
+$routes->get('admin/dashboard', 'Admin::dashboard');  // Example route
+$routes->get('teacher/dashboard', 'Teacher::dashboard');  // Example route
+
+
+
+
+

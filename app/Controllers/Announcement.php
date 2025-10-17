@@ -28,6 +28,6 @@ class Announcement extends Controller
         ];
 
         // Render announcement.php view
-        return view('announcement', $data);
+        return view('announcements', $data);
     }
 }

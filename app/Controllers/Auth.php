@@ -64,42 +64,63 @@ class Auth extends Controller
     }
 
     // Login
-    public function login()
-    {
-        helper(['form']);
-        $session = session();
-        $userModel = new UserModel();
+public function login()
+{
+    helper(['form']);
+    $data = [];
 
-        if (strtolower($this->request->getMethod()) === 'post') {
-            $rules = [
-                'email' => 'required|valid_email',
-                'password' => 'required|min_length[6]',
-            ];
+    if ($this->request->is('post')) {
+        $rules = [
+            'email'    => 'required|valid_email',
+            'password' => 'required|min_length[8]|max_length[255]',
+        ];
 
-            if (!$this->validate($rules)) {
-                return view('auth/login', ['validation' => $this->validator]);
+        if ($this->validate($rules)) {
+            $email    = $this->request->getPost('email');
+            $password = $this->request->getPost('password');
+
+            // Fetch user from database
+            $db   = \Config\Database::connect();
+            $user = $db->table('users')->where('email', $email)->get()->getRow();
+
+            if ($user) {
+                if (password_verify($password, $user->password)) {
+                    // Set session data
+                    $session = session();
+                    $session->set([
+                        'userID'     => $user->id,
+                        'user_name'  => $user->name,
+                        'user_email' => $user->email,
+                        'user_role'  => $user->role,
+                        'isLoggedIn' => true,
+                    ]);
+
+                    // Redirect based on role
+                    return match ($user->role) {
+                        'admin'   => redirect()->to('/admin/dashboard'),
+                        'teacher' => redirect()->to('/teacher/dashboard'),
+                        default   => redirect()->to('/announcements'), // students
+                    };
+                }
+
+                // Password invalid
+                return redirect()->back()->withInput()
+                    ->with('error', 'Incorrect email or password.');
             }
 
-            $user = $userModel->where('email', $this->request->getPost('email'))->first();
-
-            if ($user && password_verify($this->request->getPost('password'), $user['password'])) {
-                $session->set([
-                    'userID' => $user['id'],
-                    'name' => $user['name'],
-                    'email' => $user['email'],
-                    'role' => $user['role'],
-                    'isLoggedIn' => true,
-                ]);
-
-                $session->setFlashdata('success', 'Welcome, ' . $user['name']);
-                return redirect()->to(site_url('dashboard'));
-            } else {
-                $session->setFlashdata('error', 'Invalid email or password.');
-            }
+            // No user found
+            return redirect()->back()->withInput()
+                ->with('error', 'Email not found.');
         }
 
-        return view('auth/login');
+        // Validation failed
+        $data['validation'] = $this->validator;
     }
+
+    return view('auth/login', $data);
+}
+
+
 
     // Logout
     public function logout()

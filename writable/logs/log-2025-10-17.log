@@ -103,3 +103,43 @@ Stack trace:
 #11 C:\xampp\htdocs\ITE311-FADO\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 #12 C:\xampp\htdocs\ITE311-FADO\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
 #13 {main}
+DEBUG - 2025-10-17 15:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-17 15:11:23 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "announcement.php"
+[Method: GET, Route: announcements]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('announcement.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('announcement', [], true)
+ 3 APPPATH\Controllers\Announcement.php(31): view('announcement', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Announcement->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Announcement))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 15:11:27 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "announcement.php"
+[Method: GET, Route: announcements]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('announcement.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('announcement', [], true)
+ 3 APPPATH\Controllers\Announcement.php(31): view('announcement', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Announcement->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Announcement))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-17 15:11:50 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "announcement.php"
+[Method: GET, Route: announcements]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('announcement.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('announcement', [], true)
+ 3 APPPATH\Controllers\Announcement.php(31): view('announcement', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Announcement->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Announcement))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(60): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-10-17 15:18:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-17 15:24:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-17 15:24:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
