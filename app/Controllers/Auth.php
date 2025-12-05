@@ -1,145 +1,166 @@
 <?php
 
 namespace App\Controllers;
-
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use Config\Database;
 
-class Auth extends Controller
+class auth extends Controller
 {
-    // Registration
-    public function register()
-    {
-        helper(['form']);
-        $session = session();
-
-        $db = \Config\Database::connect();
-
-        //
-
-        if (strtolower($this->request->getMethod()) === 'post') {
-            $rules = [
-                'name' => 'required|min_length[3]|max_length[50]',
-                'email' => 'required|valid_email',
-                'password' => 'required|min_length[6]',
-                'password_confirm' => 'matches[password]'
-            ];
-
-            if (!$this->validate($rules)) {
-                return view('auth/register', ['validation' => $this->validator]);
-            }
-
-            $userModel = new UserModel();
-
-            // Check if email already exists
-            $existingUser = $userModel->where('email', $this->request->getPost('email'))->first();
-            if ($existingUser) {
-                $session->setFlashdata('error', 'Email already exists.');
-                return view('auth/register');
-            }
-
-            $data = [
-                'name' => $this->request->getPost('name'),
-                'email' => $this->request->getPost('email'),
-                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-                'role' => 'student',
-            ];
-
-            // Try insert
-            if (!$userModel->insert($data)) {
-                // Show detailed DB/model errors
-                echo "<h3>⚠️ Registration Failed</h3>";
-                echo "<pre>";
-                print_r($userModel->errors()); // validation errors
-                print_r($userModel->db->error()); // database errors
-                echo "</pre>";
-                exit;
-            }
-
-            $session->setFlashdata('success', 'Registration successful! Please log in.');
-            return redirect()->to(site_url('login'));
-        }
-
-        return view('auth/register');
-    }
-
-    // Login
-public function login()
+    public function login()
 {
     helper(['form']);
-    $data = [];
+    $session = session();
 
-    if ($this->request->is('post')) {
+    if($this->request->is('post')) {
         $rules = [
-            'email'    => 'required|valid_email',
-            'password' => 'required|min_length[8]|max_length[255]',
+            'email'    => [
+                'label'  => 'Email Address',
+                'rules'  => 'required|valid_email|regex_match[/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/]',
+                'errors' => [
+                    'regex_match' => 'The {field} format is invalid.',
+                    'required' => 'Please enter your {field}.'
+                ]
+            ],
+            'password' => [
+                'label'  => 'Password',
+                'rules'  => 'required|min_length[8]|max_length[255]|regex_match[/^(?!.*[\*"]).+$/]',
+                'errors' => [
+                    'regex_match' => 'The {field} cannot contain * or ".' ,
+                    'required' => 'Please enter your {field}.'
+                ]
+            ],
         ];
 
-        if ($this->validate($rules)) {
-            $email    = $this->request->getPost('email');
-            $password = $this->request->getPost('password');
+        if(!$this->validate($rules)) {
+            // Save validation errors to flashdata and redirect
+            $session->setFlashdata('validation_errors', $this->validator->listErrors());
+            return redirect()->to('/login')->withInput(); // keep old input
+        } 
 
-            // Fetch user from database
-            $db   = \Config\Database::connect();
-            $user = $db->table('users')->where('email', $email)->get()->getRow();
+        // Validation passed, check authentication
+        $db = \Config\Database::connect();
+        $user = $db->table('users')
+                   ->where('email', $this->request->getVar('email'))
+                   ->get()
+                   ->getRow();
 
-            if ($user) {
-                if (password_verify($password, $user->password)) {
-                    // Set session data
-                    $session = session();
-                    $session->set([
-                        'userID'     => $user->id,
-                        'user_name'  => $user->name,
-                        'user_email' => $user->email,
-                        'user_role'  => $user->role,
-                        'isLoggedIn' => true,
-                    ]);
-
-                    // Redirect based on role
-                    return match ($user->role) {
-                        'admin'   => redirect()->to('/admin/dashboard'),
-                        'teacher' => redirect()->to('/teacher/dashboard'),
-                        default   => redirect()->to('/announcements'), // students
-                    };
-                }
-
-                // Password invalid
-                return redirect()->back()->withInput()
-                    ->with('error', 'Incorrect email or password.');
-            }
-
-            // No user found
-            return redirect()->back()->withInput()
-                ->with('error', 'Email not found.');
+        if(!$user) {
+            $session->setFlashdata('error', 'Email not found.');
+            return redirect()->to('/login')->withInput();
         }
 
-        // Validation failed
-        $data['validation'] = $this->validator;
+        if(!password_verify($this->request->getVar('password'), $user->password)) {
+            $session->setFlashdata('error', 'Incorrect password.');
+            return redirect()->to('/login')->withInput();
+        }
+
+        // Successful login
+        $sessionData = [
+            'user_id'    => $user->id,
+            'user_email' => $user->email,
+            'user_role'  => $user->role,
+            'user_status' => $user->status,
+            'logged_in'  => true,
+        ];
+        $session->set($sessionData);
+        return redirect()->to('/dashboard');
     }
 
-    return view('auth/login', $data);
+    // First time visit or GET request
+    return view('auth/login');
 }
 
 
+ public function register(){
+    helper(['form']);
+    $data = [];
 
-    // Logout
+    if($this->request->is('post')) {
+        $rules = [
+            'firstname' => [
+                'label'  => 'Full Name',
+                'rules'  => 'required|min_length[3]|max_length[50]|regex_match[/^[A-Za-z\s]+$/]',
+                'errors' => [
+                    'regex_match' => 'The {field} can only contain letters and spaces.',
+                    'required' => 'Please enter your {field}.'
+                ]
+            ],
+            'email' => [
+                'label'  => 'Email Address',
+                'rules'  => 'required|valid_email|is_unique[users.email]|regex_match[/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/]',
+                'errors' => [
+                    'regex_match' => 'The {field} format is invalid.',
+                    'is_unique' => 'That email is already taken.',
+                    'required' => 'Please enter your {field}.'
+                ]
+            ],
+            'password' => [
+                'label'  => 'Password',
+                'rules'  => 'required|min_length[8]|max_length[255]|regex_match[/^(?!.*[\*"]).+$/]',
+                'errors' => [
+                    'regex_match' => 'The {field} cannot contain * or ".',
+                    'required' => 'Please enter your {field}.'
+                ]
+            ],
+            'password_confirm' => [
+                'label' => 'Confirm Password',
+                'rules' => 'matches[password]',
+                'errors' => [
+                    'matches' => 'The {field} does not match the Password.'
+                ]
+            ],
+            'terms' => [
+                'label' => 'Terms and Conditions',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'You must agree to the terms and privacy.'
+                ]
+            ]
+        ];
+
+        if(!$this->validate($rules)) {
+            $data['validation'] = $this->validator;
+            return view('auth/register', $data);
+        } 
+
+        // Insert user
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->insert([
+            'name' => $this->request->getVar('firstname'),
+            'email' => $this->request->getVar('email'),
+            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'role' => 'student'
+        ]);
+
+        return redirect()->to('/login');
+    }
+
+    return view('auth/register', $data);
+}
+
+
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(site_url('login'));
+        return redirect()->to('/login');
     }
 
-    // Dashboard
     public function dashboard()
     {
+        // Ensure user is logged in
         $session = session();
-        if (!$session->get('isLoggedIn')) {
-            return redirect()->to(site_url('login'));
+        if(!$session->get('logged_in')) {
+            session()->setFlashdata('error_log', 
+            'Please log in to access the dashboard.');
+            return redirect()->to('/login');
+        }
+        
+        if($session->get('user_status') === 'restricted') {
+            session()->setFlashdata('error_log', 'Your account is restricted. Please contact the administrator.');
+            return redirect()->to('/restricted');
         }
 
-        return view('auth/dashboard', [
-            'name' => $session->get('name'),
-            'role' => $session->get('role'),
-        ]);
+        return view('auth/dashboard');
     }
 }

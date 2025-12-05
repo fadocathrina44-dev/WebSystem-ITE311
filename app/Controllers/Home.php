@@ -4,21 +4,18 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    // Homepage
     public function index()
     {
-        return view('index'); // looks for app/Views/home.php
+        //return view('template/header');
     }
 
-    // About page
-    public function about()
+     public function restricted()
     {
-        return view('about'); // looks for app/Views/about.php
-    }
+        if(! session()->get('logged_in') &&  session()->get('user_status')!== 'restricted') {
+            return redirect()->to('/login');
 
-    // Contact page
-    public function contact()
-    {
-        return view('contact'); // looks for app/Views/contact.php
+        }
+        return view('restricted');
     }
 }
+

@@ -10,26 +10,34 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Admin',
-                'email' => 'admin@example.com',
+                'name'     => 'Admin User',
+                'email'    => 'admin@example.com',
                 'password' => password_hash('admin123', PASSWORD_DEFAULT),
-                'role' => 'admin',
+                'status'   => 'granted',
+                'role'     => 'admin',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Teacher',
-                'email' => 'teacher@example.com',
-                'password' => password_hash('teacher123', PASSWORD_DEFAULT),
-                'role' => 'teacher',
-            ],
-            [
-                'name' => 'Student',
-                'email' => 'student@example.com',
+                'name'     => 'John Student',
+                'email'    => 'student@example.com',
                 'password' => password_hash('student123', PASSWORD_DEFAULT),
-                'role' => 'student',
+                'status'   => 'granted',
+                'role'     => 'student',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name'     => 'Jane Instructor',
+                'email'    => 'instructor@example.com',
+                'password' => password_hash('instructor123', PASSWORD_DEFAULT),
+                'status'   => 'granted',
+                'role'     => 'instructor',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
         ];
 
-        // Insert multiple records into "users" table
         $this->db->table('users')->insertBatch($data);
     }
 }

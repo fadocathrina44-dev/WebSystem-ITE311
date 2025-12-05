@@ -20,8 +20,9 @@
 # APP
 #--------------------------------------------------------------------
 
+app.debug = true
 # app.baseURL = ''
-# If you have trouble with ., you could also use _.
+# If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
@@ -31,7 +32,7 @@
 #--------------------------------------------------------------------
 
  database.default.hostname = localhost
- database.default.database = lms_fado
+ database.default.database = castro
  database.default.username = root
  database.default.password = 
  database.default.DBDriver = MySQLi
